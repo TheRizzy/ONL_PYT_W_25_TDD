@@ -25,7 +25,9 @@ class AddProductView(View):
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect('/')
+            return redirect('/')
+        else:
+            return render(request, 'product_form.html', {'form': form})
 
 
 class ProductsListView(View):
