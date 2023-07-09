@@ -1,13 +1,13 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 
-from .models import Product
 from .forms import ProductForm
+from .models import Product
 
 
 class ProductView(View):
     def get(self, request, id_):
-        product = Product.objects.get(pk=id_)
+        product = get_object_or_404(Product, pk=id_)
         ctx = {
             'name': product.name,
             'description': product.description,
